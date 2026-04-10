@@ -1,0 +1,137 @@
+<svg width="100%" viewBox="0 0 680 760" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Connect 4 Python project file structure</title>
+  <desc>Structural diagram showing all files organised into four layers: engine, coaching, API, and frontend</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; fill: #1a1a1a; }
+      .th { font-size: 14px; font-weight: 500; }
+      .ts { font-size: 12px; fill: #555; }
+      .c-gray rect { fill: #F1EFE8; stroke: #5F5E5A; }
+      .c-purple rect { fill: #EEEDFE; stroke: #534AB7; }
+      .c-teal rect { fill: #E1F5EE; stroke: #0F6E56; }
+      .c-blue rect { fill: #E6F1FB; stroke: #185FA5; }
+      .c-amber rect { fill: #FAEEDA; stroke: #854F0B; }
+      .c-gray .th { fill: #2C2C2A; }
+      .c-gray .ts { fill: #5F5E5A; }
+      .c-purple .th { fill: #26215C; }
+      .c-purple .ts { fill: #534AB7; }
+      .c-teal .th { fill: #04342C; }
+      .c-teal .ts { fill: #0F6E56; }
+      .c-blue .th { fill: #042C53; }
+      .c-blue .ts { fill: #185FA5; }
+      .c-amber .th { fill: #412402; }
+      .c-amber .ts { fill: #854F0B; }
+      line.arr { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <!-- Root files -->
+  <g class="c-gray">
+    <rect x="40" y="30" width="600" height="56" rx="12" stroke-width="0.5"/>
+    <text class="th" x="340" y="52" text-anchor="middle" dominant-baseline="central">Root</text>
+    <text class="ts" x="340" y="70" text-anchor="middle" dominant-baseline="central">main.py · requirements.txt · .env · README.md · .gitignore</text>
+  </g>
+
+  <line x1="340" y1="86" x2="340" y2="116" class="arr"/>
+
+  <!-- Engine layer -->
+  <g class="c-purple">
+    <rect x="40" y="118" width="600" height="140" rx="12" stroke-width="0.5"/>
+    <text class="th" x="340" y="142" text-anchor="middle" dominant-baseline="central">engine/</text>
+    <text class="ts" x="340" y="158" text-anchor="middle" dominant-baseline="central">Pure Python — no API calls, no dependencies</text>
+  </g>
+  <g class="c-gray">
+    <rect x="60" y="168" width="160" height="70" rx="8" stroke-width="0.5"/>
+    <text class="th" x="140" y="192" text-anchor="middle" dominant-baseline="central">board.py</text>
+    <text class="ts" x="140" y="210" text-anchor="middle" dominant-baseline="central">Board state, drop_piece,</text>
+    <text class="ts" x="140" y="224" text-anchor="middle" dominant-baseline="central">check_win, is_full</text>
+  </g>
+  <g class="c-gray">
+    <rect x="250" y="168" width="160" height="70" rx="8" stroke-width="0.5"/>
+    <text class="th" x="330" y="192" text-anchor="middle" dominant-baseline="central">minimax.py</text>
+    <text class="ts" x="330" y="210" text-anchor="middle" dominant-baseline="central">Alpha-beta search,</text>
+    <text class="ts" x="330" y="224" text-anchor="middle" dominant-baseline="central">score_position</text>
+  </g>
+  <g class="c-gray">
+    <rect x="440" y="168" width="180" height="70" rx="8" stroke-width="0.5"/>
+    <text class="th" x="530" y="192" text-anchor="middle" dominant-baseline="central">bots.py</text>
+    <text class="ts" x="530" y="210" text-anchor="middle" dominant-baseline="central">10 Bot classes, depth +</text>
+    <text class="ts" x="530" y="224" text-anchor="middle" dominant-baseline="central">mistake rate per level</text>
+  </g>
+
+  <line x1="340" y1="258" x2="340" y2="288" class="arr"/>
+
+  <!-- Coaching layer -->
+  <g class="c-teal">
+    <rect x="40" y="290" width="600" height="130" rx="12" stroke-width="0.5"/>
+    <text class="th" x="340" y="314" text-anchor="middle" dominant-baseline="central">coaching/</text>
+    <text class="ts" x="340" y="330" text-anchor="middle" dominant-baseline="central">Calls Claude API — only runs when coaching is on</text>
+  </g>
+  <g class="c-gray">
+    <rect x="60" y="346" width="190" height="56" rx="8" stroke-width="0.5"/>
+    <text class="th" x="155" y="368" text-anchor="middle" dominant-baseline="central">coach.py</text>
+    <text class="ts" x="155" y="384" text-anchor="middle" dominant-baseline="central">Build prompt, call Claude</text>
+  </g>
+  <g class="c-gray">
+    <rect x="280" y="346" width="190" height="56" rx="8" stroke-width="0.5"/>
+    <text class="th" x="375" y="368" text-anchor="middle" dominant-baseline="central">prompts.py</text>
+    <text class="ts" x="375" y="384" text-anchor="middle" dominant-baseline="central">Prompt templates by level</text>
+  </g>
+  <g class="c-gray">
+    <rect x="500" y="346" width="120" height="56" rx="8" stroke-width="0.5"/>
+    <text class="th" x="560" y="368" text-anchor="middle" dominant-baseline="central">analysis.py</text>
+    <text class="ts" x="560" y="384" text-anchor="middle" dominant-baseline="central">Threat detection</text>
+  </g>
+
+  <line x1="340" y1="420" x2="340" y2="450" class="arr"/>
+
+  <!-- API layer -->
+  <g class="c-blue">
+    <rect x="40" y="452" width="600" height="130" rx="12" stroke-width="0.5"/>
+    <text class="th" x="340" y="476" text-anchor="middle" dominant-baseline="central">api/</text>
+    <text class="ts" x="340" y="492" text-anchor="middle" dominant-baseline="central">FastAPI routes — the bridge between frontend and Python logic</text>
+  </g>
+  <g class="c-gray">
+    <rect x="60" y="508" width="175" height="56" rx="8" stroke-width="0.5"/>
+    <text class="th" x="147" y="530" text-anchor="middle" dominant-baseline="central">game.py</text>
+    <text class="ts" x="147" y="546" text-anchor="middle" dominant-baseline="central">/move, /reset, /state</text>
+  </g>
+  <g class="c-gray">
+    <rect x="260" y="508" width="175" height="56" rx="8" stroke-width="0.5"/>
+    <text class="th" x="347" y="530" text-anchor="middle" dominant-baseline="central">coaching.py</text>
+    <text class="ts" x="347" y="546" text-anchor="middle" dominant-baseline="central">/coach/analyse</text>
+  </g>
+  <g class="c-gray">
+    <rect x="460" y="508" width="160" height="56" rx="8" stroke-width="0.5"/>
+    <text class="th" x="540" y="530" text-anchor="middle" dominant-baseline="central">models.py</text>
+    <text class="ts" x="540" y="546" text-anchor="middle" dominant-baseline="central">Pydantic request/response</text>
+  </g>
+
+  <line x1="340" y1="582" x2="340" y2="612" class="arr"/>
+
+  <!-- Frontend -->
+  <g class="c-amber">
+    <rect x="40" y="614" width="600" height="110" rx="12" stroke-width="0.5"/>
+    <text class="th" x="340" y="638" text-anchor="middle" dominant-baseline="central">frontend/</text>
+    <text class="ts" x="340" y="654" text-anchor="middle" dominant-baseline="central">One HTML file — no build tools, no npm, just open in browser</text>
+  </g>
+  <g class="c-gray">
+    <rect x="60" y="668" width="160" height="40" rx="8" stroke-width="0.5"/>
+    <text class="th" x="140" y="688" text-anchor="middle" dominant-baseline="central">index.html</text>
+  </g>
+  <g class="c-gray">
+    <rect x="250" y="668" width="130" height="40" rx="8" stroke-width="0.5"/>
+    <text class="th" x="315" y="688" text-anchor="middle" dominant-baseline="central">style.css</text>
+  </g>
+  <g class="c-gray">
+    <rect x="410" y="668" width="120" height="40" rx="8" stroke-width="0.5"/>
+    <text class="th" x="470" y="688" text-anchor="middle" dominant-baseline="central">game.js</text>
+  </g>
+  <g class="c-gray">
+    <rect x="560" y="668" width="62" height="40" rx="8" stroke-width="0.5"/>
+    <text class="th" x="591" y="688" text-anchor="middle" dominant-baseline="central">coach.js</text>
+  </g>
+</svg>
