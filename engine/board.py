@@ -58,6 +58,18 @@ class Board:
                     return True
 
     def __str__(self):
-        return "\n".join(" ".join(map(str, row)) for row in self.grid)
+        header = "\033[0;37;41m " + " \033[0;37;41m ".join(str(i) for i in range(7)) + " \033[0m"
+        rows = []
+        for row in self.grid:
+            row_str = ""
+            for cell in row:
+                if cell == 1:
+                    row_str += "\033[0;37;43m 1 "
+                elif cell == 2:
+                    row_str += "\033[0;37;44m 2 "
+                else:
+                    row_str += "\033[0;37;45m   "
+            rows.append(row_str + "\033[0m")
+        return header + "\n" + "\n".join(rows)
 
     
