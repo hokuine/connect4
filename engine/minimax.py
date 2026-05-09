@@ -62,8 +62,25 @@ def score_position(board, piece):
 
     # Score negative diagonal windows.
     for row in range(3):
-        for col in range(4):
-            window = [board.grid[row + 3 - i][col + i] for i in range(4)]
+        for col in range(3, 7):
+            window = [board.grid[row + i][col - i] for i in range(4)]
             score += evaluate_window(window, piece)
 
     return score
+
+def winning_move(board, piece):
+    return board.check_win(piece)
+
+def minimax(board, depth, alpha, beta, maximisingplayer):
+    valid_locations = Board.valid_columns()
+    is_terminal = board.check_win(1) or board.check_win(2) or board.is_full()
+    if depth == 0 or is_terminal:
+        if is_terminal:
+            if winning_move(board, 2):
+                return (None, 9999999)
+            if winning_move(board, 1):
+                return (None, -9999999)
+            else:
+                return (None, 0)
+        else:
+            return (None, score_position(board, 2))
